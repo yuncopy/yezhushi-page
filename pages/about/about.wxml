@@ -1,0 +1,26 @@
+<!--pages/about/about.wxml-->
+<loading wx:if="{{showLoading}}">加载中</loading>
+<view class="about">
+	<view class="about-title">{{mallName}}</view>
+	<view class="about-nr">
+		<view class="about-n-item" bindtap="bindPhoto">
+			<view>客服电话：</view>
+			<view class="arrow1">{{phoneNo}}</view>
+		</view>
+		<button class="about-n-item about-button" open-type="contact">
+			<view>在线客服：</view>
+			<view class="arrow1">点击即可与客服聊天</view>
+		</button>
+		<view class="about-n-item">
+			<view>客服QQ：</view>
+			<view>{{qqNo}}</view>
+		</view>
+		<view class="about-n-item">
+			<view>邮箱：</view>
+			<view>{{mailAddress}}</view>
+		</view>
+		<view class="about-jian">
+			<view><text>商城描述：</text>{{mallDesc}}</view>
+		</view>
+	</view>
+</view>

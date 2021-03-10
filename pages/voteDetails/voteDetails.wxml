@@ -1,0 +1,110 @@
+
+<loading wx:if="{{showLoading}}">加载中</loading>
+<view class="detail">
+  <!-- 头部背景 -->
+  <view class="de-bj">
+    <swiper class="mall-b-swiper" indicator-dots="true" autoplay="true" interval="4000" duration="1000" indicator-active-color="#F34A51" circular="true">
+      <swiper-item wx:for="{{mall.thumbs}}" wx:key="index">
+        <image src="{{baseUrl}}{{item}}" class="slide-image" />
+      </swiper-item>
+    </swiper>
+  </view>
+  <view class="de-shang">
+    <!-- 头部 -->
+    <view class="de-top">
+      <view class="de-t-title">
+        <image src="../../images/rep-03.png"></image>
+        <view>{{mall.title}}</view>
+        <image src="../../images/rep-06.png"></image>
+      </view>
+      <view>{{mall.intro}}</view>
+    </view>
+    <!-- 店铺内容 -->
+    <view class="detail-nr">
+      <!-- tou -->
+      <view class="detail-top">
+        <view>
+          <image src="{{baseUrl}}{{mall.thumb}}"></image>
+        </view>
+        <view>
+          <view>参赛人数：{{mall.players}} 名</view>
+          <view>累积投票数：{{mall.votes}} 票</view>
+        </view>
+        <!-- detail-n-sc1 -->
+        <view class="detail-n-sc" bindtap="bindtapCollect">
+          <image src="../../images/a_sc_01.png"></image>
+          <view>查看规则</view>
+        </view>
+      </view>
+      <!-- 商品分类 -->
+      <view class="detail-fen">
+        <view>
+          <image src="../../images/shopdetails-01.png"></image>
+          <view class="detail-fen1">
+            <button class="shop-t-fenxiang" open-type="share">分享项目</button>
+          </view>
+        </view>
+        <view bindtap="bindClass">
+          <image src="../../images/mall-xq03.png"></image>
+          <view>{{index.length == 0 ? '全部项目' : mallLists[index].title}}</view>
+        </view>
+      </view>
+      <!-- 搜索 -->
+      <view class="detail-sou" bindtap="bindtapSeek" data-subjectid="{{mall.id}}">
+        <image src="../../images/mall-xq04.png"></image>
+        <view>搜索你喜欢的选手或者活动</view>
+      </view> 
+
+      <!-- 商品 -->
+      <view class="xin">
+        <view class="youhui">
+            <!-- 第一件 -->
+            <view class="yh-one" wx:for="{{datas}}" wx:key="index" bindtap="bindMiaosha" data-playerid="{{item.id}}">
+              <view>
+                <image src="{{baseUrl}}{{item.thumb}}"></image>
+              </view>
+              <view class="yh-one-right">
+                <view>{{item.number}}.{{item.nickname}}</view>
+                <view>当前得票 {{item.votes}} 票
+                  <text>总排名 {{item.cur_order}}</text>
+                </view>
+                <view class="yh-one-jia" catchtap='bindMiddle'>
+                  <view>{{item.intro}}</view>
+                  <view bindtap="bindMiaoVote" data-index="{{index}}"  data-playerid="{{item.id}}" data-subjectid="{{mall.id}}">投一票></view>
+                </view>
+              </view>
+            </view>
+          </view>
+          <!-- 暂无商品 -->
+          <view class="index-qb" wx:if="{{!datas || datas.length == 0}}"> —— 暂无商品呦！ ——</view>
+      </view>
+    </view>
+    <!-- 已加载全部 -->
+    <view class="index-qb" wx:if="{{currPage == totalPage && datas.length != 0}}"> —— 别扯了，到底了 ——</view>
+  </view>
+</view>
+
+
+<!-- 弹窗 -->
+<view class="mask" style="top: {{masktop}}">
+  <view class="mask-block" bindtap="bindClose"></view>
+  <view class="mask-nr">
+    <view>{{mallTitle}}</view>
+    <view class="mask-nr-mz">
+      
+      <view class="mask-n-two" hidden="{{!collect}}"><rich-text nodes="{{contents}}"></rich-text></view>
+
+      <!-- 第一个分类 -->
+      <view hidden="{{collect}}" class="mask-n-one" wx:for="{{mallLists}}" wx:key="index" bindtap="bindtapLists" data-subjectid="{{item.id}}" data-index="{{index}}">
+        <image src="{{baseUrl}}{{item.thumbs}}"></image>
+        <view>{{item.title}}</view>
+        <image src="../../images/index-05.png"></image>
+      </view>
+    </view>
+    <view class="mask-n-bottom">商品应有尽有，好货买不停</view>
+    <!-- 关闭按钮 -->
+    <view class="mask-n-gb" bindtap="bindClose">
+      <image src="../../images/mall-xq06.png"></image>
+    </view>
+  </view>
+</view>

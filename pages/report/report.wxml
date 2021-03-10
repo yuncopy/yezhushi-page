@@ -1,0 +1,99 @@
+<loading wx:if="{{showLoading}}">加载中</loading>
+
+<!--提交填报信息-->
+<view class="report" wx:if="{{!alter}}">
+  <view class="report-list pad24">
+    <view class="report-top">
+      <text>防控疫情，人人有责，请认真登记您的到访信息</text>
+    </view>
+    
+    <view class="name">
+      <text>我的姓名：</text>
+      <input type="text" maxlength="30" bindinput="bindName" value="{{name}}" name="" placeholder="请输入你的姓名" />
+    </view>
+    <view class="phone">
+      <text>我的电话：</text>
+      <input type="number" bindinput="bindNumber" value="{{number}}" name=""  placeholder="请输入你的手机号" />
+    </view>
+    <view class="village">
+      <text>所在小区：</text>
+      <picker  class="addres-xz" bindchange="bindPickerEstate" value="{{indexEstate}}" range="{{arrayEstate}}" range-key="estateName">
+        <view class="picker">{{arrayEstate[indexEstate].estateName}}</view>
+      </picker>
+      <view class="arrow"></view>
+    </view>
+    <view class="village">
+      <text>来访身份：</text>
+      <picker  class="addres-xz" bindchange="bindPickerChange" value="{{index}}" range="{{array}}" range-key="visit">
+        <view class="picker">{{array[index].visit}}</view>
+      </picker>
+      <view class="arrow"></view>
+    </view>
+    <view class="village">
+      <text>当前体温：</text>
+      <picker  class="addres-xz" bindchange="bindPickerTemperature" value="{{indexTemp}}" range="{{arrayTemp}}" range-key="temperature">
+        <view class="picker">{{arrayTemp[indexTemp].temperature}}</view>
+      </picker>
+      <view class="arrow"></view>
+    </view>
+    <view class="village">
+      <text>健康状态：</text>
+      <picker  class="addres-xz" bindchange="bindPickerHealth" value="{{indexHealth}}" range="{{arrayHealth}}" range-key="health">
+        <view class="picker">{{arrayHealth[indexHealth].health}}</view>
+      </picker>
+      <view class="arrow"></view>
+    </view>
+    <view class="message">
+      <text>详细地址：</text>
+      <input type="text" bindinput="bindAddress" value="{{detail}}" name="" maxlength="60" placeholder="请输入详细地址" />
+    </view>
+  </view>
+</view>
+<view class="addnew" wx:if="{{!alter}}">
+  <view class="addanniu pad24" bindtap="bindtapAddReport">提交到访信息</view>
+</view>
+
+
+
+
+<!--展示填报信息-->
+<view class="report" wx:if="{{alter}}">
+  <view class="report-list pad24">
+    <view class="report-top">
+      <text>防控疫情，人人有责，请认真登记您的到访信息</text>
+    </view>
+    
+    <view class="name">
+      <text>我的姓名：</text>
+      <text>{{report.name}}</text>
+    </view>
+    <view class="phone">
+      <text>我的电话：</text>
+      <text>{{report.phone}}</text>
+    </view>
+    <view class="village">
+      <text>所在小区：</text>
+      <text>{{report.community.name}}</text>
+    </view>
+    <view class="village">
+      <text>来访身份：</text>
+      <text>{{report.visiter}}</text>
+    </view>
+    <view class="village">
+      <text>当前体温：</text>
+      <text>{{report.temperature}}</text>
+    </view>
+    <view class="village">
+      <text>健康状态：</text>
+      <text>{{report.health}}</text>
+    </view>
+    <view class="message">
+      <text>详细地址：</text>
+      <text>{{report.addr}}</text>
+    </view>
+  </view>
+</view>
+<view class="addnew" wx:if="{{alter}}">
+  <view class="addanniu pad24" bindtap="bindtapReport" >今日已登记到访</view>
+</view>
+

@@ -1,0 +1,50 @@
+
+<loading wx:if="{{showLoading}}">加载中</loading>
+<view class="detail">
+  <!-- 头部背景 -->
+  <view class="de-bj">
+    <swiper class="mall-b-swiper" indicator-dots="true" autoplay="true" interval="4000" duration="1000" indicator-active-color="#F34A51" circular="true">
+      <swiper-item wx:for="{{mall.thumbs}}" wx:key="index">
+        <image src="{{baseUrl}}{{item}}" class="slide-image" />
+      </swiper-item>
+    </swiper>
+  </view>
+  <view class="de-shang">
+    <!-- 店铺内容 -->
+    <view class="detail-nr">
+      <!-- tou -->
+      <view class="detail-top">
+        <view>
+          <image src="{{baseUrl}}{{mall.thumb}}"></image>
+        </view>
+        <view>
+          <view>名称：{{mall.device_name}}</view>
+          <view>维修师傅：{{mall.device_name}}</view>
+        </view>
+        <!-- detail-n-sc1 -->
+        <view class="detail-n-sc">
+          <view>{{mall.status_text}}</view>
+        </view>
+      </view>
+      <!-- 商品分类 -->
+      <view class="detail-fen">
+        <view>
+          <image src="../../images/shopdetails-01.png"></image>
+          <view class="detail-fen1">
+            <button class="shop-t-fenxiang" open-type="share">分享项目</button>
+          </view>
+        </view>
+        <view bindtap="bindClass" data-deviceid="{{mall.device_id}}" data-devicename="{{mall.device_name}}">
+          <image src="../../images/mall-xq03.png"></image>
+          <view>{{mall.device_name}}列表</view>
+        </view>
+      </view>
+      <!-- 商品 -->
+      <view class="xin">
+        <view class="xin-n-one">
+           <view><rich-text nodes="{{mall.desc}}"></rich-text></view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

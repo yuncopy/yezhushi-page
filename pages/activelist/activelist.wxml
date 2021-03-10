@@ -1,0 +1,66 @@
+<loading wx:if="{{showLoading}}">加载中</loading>
+<view class="shops">
+
+  <!-- 商品分类 -->
+    <view class="detail-fen">
+      <view>
+        <image src="../../images/shopdetails-01.png"></image>
+        <view class="detail-fen1">
+          <button class="shop-t-fenxiang" open-type="share">分享项目</button>
+        </view>
+      </view>
+      <view bindtap="bindClass">
+        <image src="../../images/mall-xq03.png"></image>
+        <view wx:if="{{deviceid}}" >{{devicename}}分类</view>
+        <view wx:if="{{!deviceid}}" >{{index.length == 0 ? '全部' : mallLists[index].repairName}}分类</view>
+      </view>
+    </view>
+
+  <view class="activelist">
+    <view class="active-nr" wx:for="{{datas}}" wx:key="index" bindtap="bindMall"  data-shopid="{{item.id}}">
+      <view class="active-img">
+        <image src="{{baseUrl}}{{item.thumb}}"></image>
+      </view>
+      <view class="active-wz">
+        <view>
+          <image src="../../images/a_cuxiao.jpg"></image>描述：{{item.desc}}
+        </view>
+        <view>报修时间：{{item.create_time}}</view>
+        <view>分类名称：{{item.device_name}}</view>
+        <view>去看看 >> </view>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 已加载全部 -->
+<view class="index-qb" wx:if="{{currPage == totalPage && datas.length != 0}}"> —— 别扯了，到底了 ——</view>
+<!-- 空页面-->
+<view class="cart-kong" wx:if="{{!datas || datas.length == 0}}">
+  <image src="../../images/adingdan.png"></image>
+  <view>暂无活动</view>
+  <view>~ 活动列表为空呦! ~</view>
+</view>
+
+
+
+
+<!-- 弹窗 -->
+<view class="mask" style="top: {{masktop}}">
+  <view class="mask-block" bindtap="bindClose"></view>
+  <view class="mask-nr">
+    <view>小区维修项目分类</view>
+    <view class="mask-nr-mz">
+      <!-- 第一个分类 -->
+      <view  class="mask-n-one" wx:for="{{mallLists}}" wx:key="index" bindtap="bindtapLists" data-deviceid="{{item.repairId}}" data-index="{{index}}">
+        <image src="../../images/mall-xq05.png"></image>
+        <view>{{item.repairName}}</view>
+        <image src="../../images/index-05.png"></image>
+      </view>
+    </view>
+    <view class="mask-n-bottom">商品应有尽有，好货买不停</view>
+    <!-- 关闭按钮 -->
+    <view class="mask-n-gb" bindtap="bindClose">
+      <image src="../../images/mall-xq06.png"></image>
+    </view>
+  </view>
+</view>

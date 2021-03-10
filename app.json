@@ -1,0 +1,63 @@
+{
+  "pages": [
+    "pages/start/start",
+    "pages/index/index",
+    "pages/my/my",
+    "pages/seek/seek",
+    "pages/about/about",
+    "pages/comNews/comNews",
+    "pages/community/community",
+    "pages/activelist/activelist",
+    "pages/noticelist/noticelist",
+    "pages/address/address",
+    "pages/repList/repList",
+    "pages/noticedetails/noticedetails",
+    "pages/add-address/add-address",
+    "pages/repDetails/repDetails",
+    "pages/repairs/repairs",
+    "pages/vote/vote",
+    "pages/voteSubject/voteSubject",
+    "pages/voteDetails/voteDetails",
+    "pages/player/player"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#F34A51",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#F34A51",
+    "backgroundTextStyle": "light"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/index.png",
+        "selectedIconPath": "images/index-hover.png"
+      },
+      {
+        "pagePath": "pages/vote/vote",
+        "text": "投票",
+        "iconPath": "images/cart.png",
+        "selectedIconPath": "images/cart-hover.png"
+      },
+      {
+        "pagePath": "pages/repairs/repairs",
+        "text": "报修",
+        "iconPath": "images/wuye.png",
+        "selectedIconPath": "images/wuye-hover.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "images/my.png",
+        "selectedIconPath": "images/my-hover.png"
+      }
+    ],
+    "color": "#666",
+    "selectedColor": "#f34a51",
+    "borderStyle": "black",
+    "backgroundColor": "#fff",
+    "position": "bottom"
+  },
+  "sitemapLocation": "sitemap.json"
+}

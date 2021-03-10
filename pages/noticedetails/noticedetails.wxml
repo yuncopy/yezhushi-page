@@ -1,0 +1,19 @@
+<loading wx:if="{{showLoading}}">加载中</loading>
+<view class="noticedetails">
+	<view class="details-xq pad24">
+		<view class="biaoti">{{title}}</view>
+		<view class="riqi">
+			<text>{{time}}</text>
+			<text>{{cidName}}</text>
+		</view>
+		<view wx:if="{{endTime}}" class="huodong">
+			<view><text>活动时间：{{beginTime}} ～ {{endTime}}</text></view>
+			<view><text>活动地点：{{place}}</text></view>
+			<view><text>举办单位：{{sponsor_unit}}</text></view>
+		</view>
+		<view class="content">
+			<rich-text nodes="{{nodes}}"></rich-text>
+		</view>
+		
+	</view>
+</view>

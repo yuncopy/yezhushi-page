@@ -1,0 +1,105 @@
+<!--pages/seek/seek.wxml-->
+<loading wx:if="{{showLoading}}">加载中</loading>
+<view class="seek">
+  <!-- 输入框 -->
+  <view class="seek-top">
+    <input type="text" name="" bindinput="bindInput" value="{{inputValue}}" focus="true" placeholder="请输入您想要搜索的内容" placeholder-style="color:#999;" />
+    <view class="seek-t-right" bindtap="bindtapSeek">
+      <image src="../../images/seek-01.png"></image>
+      <view>搜索</view>
+    </view>
+  </view>
+
+  <!-- 热搜 -->
+  <view class="seek-re" wx:if="{{shopNone || !inputValue}}">
+    <view>热搜</view>
+    <view class="seek-re-list">
+      <view wx:for="{{hotSeek}}" wx:key="index" bindtap="bindtapHot" data-index="{{index}}">{{item}}</view>
+    </view>
+  </view>
+
+  <!-- 历史搜索 -->
+  <view class="seek-history" wx:if="{{(shopNone || !inputValue) && pastSeek.length != 0}}">
+    <view class="seek-hi-title">
+      <view>历史搜索</view>
+      <image bindtap="bindtapDelete" src="../../images/cart-01.png"></image>
+    </view>
+    <view class="seek-hi-list">
+      <view wx:for="{{pastSeek}}" wx:key="index" bindtap="bindtapPast" data-item="{{item}}">{{item}}</view>
+    </view>
+  </view>
+
+  <!-- 搜索结果分类 -->
+  <view class="seek-sort" wx:if="{{!shopNone && inputValue}}">
+    <view class="{{shopTitleIndex == index ? 'seek-s-active' : ''}}" wx:for="{{shopTitle}}" wx:key="index" bindtap="bindtapShopTitle" data-index="{{index}}">{{item}}</view>
+  </view>
+  
+  <!-- 商品结果 -->
+  <view class="xin-nei" wx:if="{{shopTitleIndex==0}}">
+    <!-- 第一件商品 -->
+    <view class="xin-n-one" wx:for="{{shops}}" wx:key="index" bindtap="bindtapShopDetails" data-goodsid="{{item.id}}">
+      <image src="{{baseUrl}}{{item.thumb}}"></image>
+      <view>{{item.number}}.{{item.nickname}}</view>
+      <view>
+        <view>{{item.subject.title}}</view>
+        <view>得票：{{item.votes}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 店铺搜索结果 -->
+  <view class="seek-store" wx:if="{{shopTitleIndex==1}}">
+    <!-- 第一个 -->
+    <view class="shoplist" wx:for="{{shops}}" wx:for-item="i" wx:key="i">
+      <view class="pad24">
+        <view class="shop-top" bindtap="bindtapMall" data-shopid="{{i.id}}">
+          <view class="top-l">
+            <view>
+              <image src="{{baseUrl}}{{i.thumb}}"></image>
+            </view>
+            <view>
+              <text>{{i.title}}</text>
+              <text>参赛选手：共 {{i.voters}}名</text>
+            </view>
+          </view>
+          <view class="top-r">去看看></view>
+        </view>
+        <view class="shop-btm">
+          <view class="shop-img">
+            <view wx:for="{{i.player}}" wx:key="index" bindtap="bindtapShopDetails" data-goodsid="{{item.id}}">
+              <image src="{{baseUrl}}{{item.thumb}}"></image>
+              <view>{{item.number}}.{{item.nickname}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 品牌搜索结果 -->
+  <view class="brand-list" wx:if="{{shopTitleIndex==2}}">
+    <!-- 第一条 -->
+    <view class="news-i-one" wx:for="{{shops}}" wx:key="index" bindtap="bindtapBrand" data-brandid="{{item.id}}" data-cid="{{item.cid}}">
+      <view>
+        <image src="{{baseUrl}}{{item.thumb}}"></image>
+      </view>
+      <view class="news-one-right">
+        <view>{{item.title}}</view>
+        <view>{{item.category.name}}</view>
+        <view>
+          <view>{{item.createTime}}</view>
+          <text>查看详情>></text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 已加载全部 -->
+  <view class="index-qb" wx:if="{{currPage == totalPage && shops.length != 0}}"> —— 别扯了，到底了 ——</view>
+  <!-- 空页面 -->
+  <view class="cart-kong" wx:if="{{(!shops || shops.length == 0) && !shopNone && inputValue}}">
+    <image src="../../images/asuosou.png"></image>
+    <view>暂无内容</view>
+    <view>~ 抱歉，未找到搜索内容！ ~</view>
+  </view>
+</view>

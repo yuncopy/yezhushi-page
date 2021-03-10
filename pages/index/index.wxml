@@ -1,0 +1,181 @@
+<!--index.wxml-->
+<loading wx:if="{{showLoading}}">加载中</loading>
+<view class="index">
+  <!-- top -->
+  <view class="index-top">
+    <!-- 定位底部的图片 -->
+    <view class="index-top-image">
+      <swiper class="mall-b-swiper" indicator-dots="true" autoplay="true" interval="4000" duration="1000" indicator-active-color="#F34A51" circular="true">
+        <block wx:for="{{bannerArr}}" wx:key="index" >
+            <swiper-item class="banner-item" bindtap="onProductsItemTap" data-link="{{item.link}}">
+                <image class="item-image" src="{{baseUrl}}{{item.image}}" mode="aspectFill" />
+            </swiper-item>
+        </block>
+      </swiper>
+      <!--image src="../../images/index-top.jpg"></image-->
+    </view>
+    <!-- 定位图片上面的内容 -->
+    <view class="index-top-wz">
+      <view>{{bannerName}}</view>
+      <view>{{bannerDescription}}</view>
+      <!-- 搜索 -->
+      <view class="index-sou" bindtap="bindtapSeek">
+        <input type="text" name="" disabled="false" placeholder="请输入您想要的内容" placeholder-style="font-size:28rpx;color:#ccc;" />
+        <view>
+          <image src="../../images/index-sou.png"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 公告快讯 -->
+  <view class="gong" bindtap="bindtapNotice">
+    <!-- 公告左侧 -->
+    <view class="gong-left">
+      <image src="../../images/index-gonggao.png"></image>
+    </view>
+    <!-- 公告右侧 -->
+    <view class="gong-right">
+      <swiper class="swiper_container" bindchange="swiperChange" vertical="true" autoplay="true" circular="true" interval="2000" duration="500" display-multiple-items="2">
+        <block wx:for="{{notice}}" wx:key="index">
+          <swiper-item class="swiper_item">
+            <view class="swiper_item1">{{item.articleTitle}}</view>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+  </view>
+  <!-- 精品商城 -->
+  <view class="shang">
+    <view class="shang-item" bindtap="bindReport">
+      <image src="../../images/index-01.png"></image>
+      <view>疫情防控</view>
+    </view>
+
+    <view class="shang-item" bindtap="bindtapRep">
+      <image src="../../images/index-02.png"></image>
+      <view>在线报修</view>
+    </view>
+  </view>
+
+  <!-- 我的报修 -->
+  <view class="xiu" wx:if="{{repa}}">
+    <view class="xiu-top">
+      <view>我的报修</view>
+      <view>
+        <text></text>{{repa.orderStatus}}</view>
+    </view>
+    <view class="xiu-bottom" bindtap="bindMend" data-orderid="{{repa.orderId}}">
+      <view class="xiu-b-left">
+        <view>{{repa.fName}}</view>
+        <image wx:if="{{repa.orderSrc1 && repa.orderSrc1 != 'undefined'}}" src="{{baseUrl}}{{repa.orderSrc1}}"></image>
+        <image wx:if="{{!repa.orderSrc1 || repa.orderSrc1 == 'undefined'}}" src="../../images/index-bx.jpg"></image>
+      </view>
+      <view class="xiu-right">
+        <view>{{repa.orderRemarks}}</view>
+        <view>报修时间：{{repa.createTime}}</view>
+        <view wx:if="{{!repa.userTel}}">本人电话：{{repa.userPhone}}</view>
+        <view wx:if="{{repa.userTel}}">师傅电话：{{repa.userTel}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 社区新闻 -->
+  <view class="index-news">
+    <view class="you-top">
+      <view>社区新闻</view>
+      <view bindtap="bindtapNews">更多
+        <image src="../../images/index-05.png"></image>
+      </view>
+    </view>
+    <view class="news-item">
+      <!-- 第一条 -->
+      <view class="news-i-one" wx:for="{{news}}" wx:key="index" bindtap="bindtapNewsDetails" data-articleid="{{item.articleId}}">
+        <view>
+          <image src="{{baseUrl}}{{item.articleImg}}"></image>
+        </view>
+        <view class="news-one-right">
+          <view>{{item.articleTitle}}</view>
+          <view>活动新闻</view>
+          <view>
+            <view>{{item.createTime}}</view>
+            <text>查看详情>></text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 社区活动 -->
+  <view class="you" wx:if="{{activity}}">
+    <view class="you-top">
+      <view>社区活动</view>
+      <view bindtap="bindtapCommun">更多
+        <image src="../../images/index-05.png"></image>
+      </view>
+    </view>
+    <!-- 优惠内容 -->
+    <view class="you-bottom">
+      <scroll-view scroll-x style="height: 100%;" scroll-left="scrollleft">
+        <view class="you-b-item">
+          <!-- 第一个优惠商品 -->
+          <view class="shequ" wx:for="{{activity}}" wx:key="index">
+            <image src="{{baseUrl}}{{item.activityImg}}"></image>
+            <view class="shequ-item">
+              <view>{{item.activityTitle}}</view>
+              <!--view>发布时间：{{item.createTime}} </view-->
+              <view>活动时间：{{item.beginTime}}～{{item.endTime}}</view>
+              <view bindtap="bindtapActivity" data-articleid="{{item.articleId}}">去看看</view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <!-- 社区故事 -->
+  <view class="index-news">
+    <view class="you-top">
+      <view>社区故事</view>
+      <view bindtap="bindtapStory">更多
+        <image src="../../images/index-05.png"></image>
+      </view>
+    </view>
+    <view class="news-item">
+      <!-- 第一条 -->
+      <view class="news-i-one" wx:for="{{story}}" wx:key="index" bindtap="bindtapNewsDetails" data-articleid="{{item.articleId}}">
+        <view>
+          <image src="{{baseUrl}}{{item.articleImg}}"></image>
+        </view>
+        <view class="news-one-right">
+          <view>{{item.articleTitle}}</view>
+          <view>社区故事</view>
+          <view>
+            <view>{{item.createTime}}</view>
+            <text>查看详情>></text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 热销商品 -->
+  <view class="rexiao">
+    <view class="you-top">
+      <view>物业维修</view>
+      <view bindtap="bindMallsMove">更多
+        <image src="../../images/index-05.png"></image>
+      </view>
+    </view>
+    <!-- 内容 -->
+    <view class="re-chan">
+      <!-- 第一个商品 -->
+      <view class="re-c-one" wx:for="{{hotShop}}" wx:key="index" bindtap="bindtapHotShop" data-goodsid="{{item.id}}">
+        <image src="{{baseUrl}}{{item.thumb}}"></image>
+        <view>{{item.status_text}}({{item.device_name}})</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 已加载全部 -->
+  <view class="index-qb" wx:if="{{currPage == totalPage && newShop.length != 0}}"> —— 别扯了，到底了 ——</view>
+</view>

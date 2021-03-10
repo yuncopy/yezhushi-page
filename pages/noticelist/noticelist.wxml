@@ -1,0 +1,21 @@
+<loading wx:if="{{showLoading}}">加载中</loading>
+<view class="notice">
+  <view class="noticelist" wx:for="{{datas}}" wx:key="index" data-articleid="{{item.articleId}}" bindtap="bindtapNews">
+    <view class="list-xq pad24">
+      <view>{{item.articleTitle}}</view>
+      <view>{{item.articleKey}}</view>
+      <view>
+        <text>{{item.createTime}}</text>
+        <text>| 新闻公告</text>
+      </view>
+    </view>
+  </view>
+  <!-- 已加载全部 -->
+  <view class="index-qb" wx:if="{{currPage == totalPage && datas.length != 0}}"> —— 别扯了，到底了 ——</view>
+</view>
+<!-- 空页面-->
+<view class="cart-kong" wx:if="{{!datas || datas.length == 0}}">
+  <image src="../../images/axinxi.png"></image>
+  <view>暂无公告</view>
+  <view>~ 公告列表为空呦! ~</view>
+</view>

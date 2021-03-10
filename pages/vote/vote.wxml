@@ -1,0 +1,82 @@
+<!--pages/mall/mall.wxml-->
+<loading wx:if="{{showLoading}}">加载中</loading>
+<view class="mall">
+  <!-- 头部轮播 -->
+  <view class="mall-banner">
+    <swiper class="mall-b-swiper" indicator-dots="true" autoplay="true" interval="4000" duration="1000" indicator-active-color="#F34A51" circular="true">
+      <swiper-item wx:for="{{imgUrls}}" wx:key="index">
+        <image src="{{baseUrl}}{{item.image}}" class="slide-image" />
+      </swiper-item>
+    </swiper>
+  </view>
+  <!-- 搜索 -->
+  <view class="mall-sou" bindtap="bindtapSeek" data-subjectid="{{seckill.id}}">
+    <view>
+      <image src="../../images/mall-02.png"></image>
+    </view>
+    <view>搜索您喜欢的选手或者活动</view>
+  </view>
+  
+  <!-- 新品推荐 -->
+  <view class="xin">
+    <view class="you-top">
+      <view>投票活动</view>
+      <view bindtap="bindtapNewMore">更多
+        <image src="../../images/index-05.png"></image>
+      </view>
+    </view>
+    <!-- 内容 -->
+    <view class="xin-nei">
+      <!-- 第一件商品 -->
+      <view class="xin-n-one" wx:for="{{newShop}}" wx:key="index" bindtap="bindtapNew" data-subjectid="{{item.id}}">
+        <image src="{{baseUrl}}{{item.thumbs}}"></image>
+        <view>{{item.title}}</view>
+        <view>参赛人数：{{item.players}} 名</view>
+        <view>
+          <view>累积投票：</view>
+          <view>{{item.votes}} 票</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+    <!-- 小轮播图 -->
+  <view class="mall-xbanner">
+    <swiper class="mall-b-swiper" autoplay="true" interval="5000" duration="1000" circular="true">
+      <swiper-item wx:for="{{seckill.thumbs}}" wx:key="index">
+        <image src="{{baseUrl}}{{item}}" class="slide-image" />
+      </swiper-item>
+    </swiper>
+  </view>
+
+  <!-- 优惠秒杀 -->
+  <view class="mall-yh" >
+    <view class="you-top">
+      <view>投票：{{seckill.title}}</view>
+      <view bindtap="bindtapNew" data-subjectid="{{seckill.id}}" >更多
+        <image src="../../images/index-05.png"></image>
+      </view>
+    </view>
+    <!-- 秒杀商品 -->
+    <view class="youhui">
+      <!-- 第一件 -->
+      <view class="yh-one" wx:for="{{player}}" wx:key="index" bindtap="bindMiaosha" data-playerid="{{item.id}}">
+        <view>
+          <image src="{{baseUrl}}{{item.thumb}}"></image>
+        </view>
+        <view class="yh-one-right">
+          <view>{{item.number}}.{{item.nickname}}</view>
+          <view>当前得票 {{ item.votes }} 票
+            <text>总排名 {{item.cur_order}}</text>
+          </view>
+          <view class="yh-one-jia" catchtap='bindMiddle' >
+            <view>{{item.intro}}</view>
+            <view bindtap="bindMiaoVote" data-index="{{index}}"  data-playerid="{{item.id}}" data-subjectid="{{seckill.id}}">投一票></view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 已加载全部 -->
+  <view class="index-qb" wx:if="{{currPage == totalPage && newShop.length != 0}}"> —— 别扯了，到底了 ——</view>
+</view>
