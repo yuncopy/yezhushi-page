@@ -7,11 +7,13 @@ class Config{
     }
 }
 
+
+Config.debug = false;
 Config.applet = '业主事';
 Config.bannerName = '安泰物业';
 Config.bannerDescription = '贴心改变生活，用心创造价值。';
-Config.api = 'http://yezhushi-api.me/api/v1/'; //接口地址
-Config.baseUrl = 'http://yezhushi-api.me/'; //图片地址 https://towass.honghuseo.cn/
+Config.api = Config.debug ? 'http://yezhushi-api.me/api/v1/' : 'http://www.yezhushi.com/api/v1/'; //接口地址
+Config.baseUrl = Config.debug ? 'http://yezhushi-api.me/' : 'http://www.yezhushi.com/'; //图片地址 
 Config.tokenName = 'token';
 Config.onPay=true;  //是否启用支付
 
