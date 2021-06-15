@@ -95,6 +95,7 @@ Page({
 
   /** 轮播图的切换事件*/
   swiperChange: function (e) { 
+   
     //console.log(e); 
     var index = e.detail.current;
     this.setData({
@@ -102,6 +103,7 @@ Page({
       bannerName:this.data.bannerArr[index].name,
       bannerDescription:this.data.bannerArr[index].description,
     })
+    
   },
 
   //分享

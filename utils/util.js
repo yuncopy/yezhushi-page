@@ -1,4 +1,4 @@
-
+import { Config } from 'config.js';
 
 function formatNumber(n) {
   n = n.toString()
@@ -62,10 +62,22 @@ function getKeys(dictObject){
   return createArr;
 }
 
+/**
+ * 替换富文本编辑器中的src 属性
+ * @param {*} content 
+ */
+function imageUrlPrefix(content){
+  var result = content.replace(/<img [^>]*src=['"]([^'"]+)[^>]*>/gi, function (match,capture) {
+    //console.log(capture);
+    return '<img src="'+ Config.baseUrl+capture+'" style="max-width:100%;height:auto;display:block;margin:10px 0;" />';
+  });
+  return result;
+}
 
 module.exports = {
 　　 formatTime: formatTime2Date,
     formatNumber:formatNumber,
     isInArray:isInArray,
-    getKeys:getKeys
+    getKeys:getKeys,
+    imageUrlPrefix:imageUrlPrefix
 }

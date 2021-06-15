@@ -5,4 +5,4 @@ protected/runtime/*
 protected/data/*.db
 themes/classic/views/
 .DS_Store
-.idea
+.idea/*

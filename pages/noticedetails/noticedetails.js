@@ -41,12 +41,12 @@ Page({
   _getActivityInfo(callback){
     var that = this;
     notice.getActivityInfo({id:that.data.id},(res)=>{
-      //console.log(res);
+      
       this.setData({
         title: res.data.articleTitle,
         time: utils.formatTime(res.data.createTime,'Y-M-D'),
         catid: res.data.catId,
-        nodes:res.data.articleContent,
+        nodes:utils.imageUrlPrefix(res.data.articleContent),
         cidName:'社区活动',
         beginTime:utils.formatTime(res.data.beginTime,'Y-M-D'),
         endTime:utils.formatTime(res.data.endTime,'Y-M-D'),
@@ -70,7 +70,7 @@ Page({
         time: utils.formatTime(res.data.createTime,'Y-M-D'),
         catid: res.data.catId,
         cidName:res.data.cidName,
-        nodes:res.data.articleContent,
+        nodes:utils.imageUrlPrefix(res.data.articleContent),
         showLoading:false
       });
       wx.setNavigationBarTitle({

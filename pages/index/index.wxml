@@ -5,7 +5,7 @@
   <view class="index-top">
     <!-- 定位底部的图片 -->
     <view class="index-top-image">
-      <swiper class="mall-b-swiper" indicator-dots="true" autoplay="true" interval="4000" duration="1000" indicator-active-color="#F34A51" circular="true">
+      <swiper class="mall-b-swiper" indicator-dots="true" autoplay="true" interval="4000" duration="1000"  indicator-active-color="#F34A51" circular="true">
         <block wx:for="{{bannerArr}}" wx:key="index" >
             <swiper-item class="banner-item" bindtap="onProductsItemTap" data-link="{{item.link}}">
                 <image class="item-image" src="{{baseUrl}}{{item.image}}" mode="aspectFill" />
@@ -15,9 +15,11 @@
       <!--image src="../../images/index-top.jpg"></image-->
     </view>
     <!-- 定位图片上面的内容 -->
-    <view class="index-top-wz">
+    <view class="index-top-w">
       <view>{{bannerName}}</view>
       <view>{{bannerDescription}}</view>
+    </view>
+    <view class="index-top-wz">
       <!-- 搜索 -->
       <view class="index-sou" bindtap="bindtapSeek">
         <input type="text" name="" disabled="false" placeholder="请输入您想要的内容" placeholder-style="font-size:28rpx;color:#ccc;" />
