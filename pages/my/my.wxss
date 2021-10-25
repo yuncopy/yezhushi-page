@@ -59,6 +59,8 @@
   line-height: 54rpx;
   margin: 10rpx auto 0 auto;
   background: #ff9a44;
+  font-size: 32rpx;
+  color: #fff;
   border-radius: 25rpx;
   display: flex;
   justify-content: center;
@@ -187,3 +189,4 @@
   color: #ccc;
   margin: 20rpx 0;
 }
+

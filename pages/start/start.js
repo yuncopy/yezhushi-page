@@ -62,6 +62,15 @@ Page({
     };
   },
   
+  /**
+   * 执行跳转
+   */
+  bindGetIndex(){
+    wx.switchTab({
+      url: '../index/index'
+    });
+  },
+
   //按钮的点击事件
   bindGetUserInfo(e) {
     var that=this;

@@ -9,6 +9,9 @@
 	<view class="start-anniu">
 		<view class="start-title">{{datas.system_name}}</view>
 		<view class="start-nr">{{datas.system_desc}}</view>
-		<button class="start-button" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">开启新生活</button>
+		<button class="start-button" bindtap="bindGetIndex">开启新生活</button>
+
+		<!--button class="start-button" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">开启新生活</button-->
+
 	</view>
 </view>

@@ -69,7 +69,12 @@ function getKeys(dictObject){
 function imageUrlPrefix(content){
   var result = content.replace(/<img [^>]*src=['"]([^'"]+)[^>]*>/gi, function (match,capture) {
     //console.log(capture);
-    return '<img src="'+ Config.baseUrl+capture+'" style="max-width:100%;height:auto;display:block;margin:10px 0;" />';
+  if(capture.substr(0,7).toLowerCase()=='http://' || capture.substr(0,8).toLowerCase()=='https://'){
+    var imgUrl = capture;
+  }else{
+    var imgUrl = Config.baseUrl+capture;
+  }
+  return '<img src="'+ imgUrl +'" style="max-width:100%;height:auto;display:block;margin:10px 0;" />';
   });
   return result;
 }

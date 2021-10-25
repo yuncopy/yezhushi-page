@@ -11,9 +11,8 @@
 		<view class="my-t-nr">
 			<view><open-data type="userAvatarUrl"></open-data></view>
 			<view><open-data type="userNickName"></open-data></view>
-			<view class="my-t-jf" bindtap="bindIntegral" hidden="true">
-				<image src="../../images/my-03.png"></image>
-				<view>我的积分：{{userScore}} </view>
+			<view>
+				<button class="my-t-jf" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">开启服务</button>
 			</view>
 		</view>
 		<!-- 订单 -->
